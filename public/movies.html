@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movies — CineBook AI</title>
+  <meta name="description" content="Browse, search, filter and sort every movie on CineBook AI." />
+  <meta name="theme-color" content="#0a0a10" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%F0%9F%8E%AC%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/movie.css" />
+  <link rel="stylesheet" href="css/booking.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body data-page="movies">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="navbar" id="navbar" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="CineBook AI — home">
+        <span class="brand-mark" aria-hidden="true">🎬</span>
+        <span class="brand-name">CineBook<span class="brand-ai">AI</span></span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="movies.html" class="active" aria-current="page">Movies</a></li>
+        <li><a href="theatres.html">Theatres</a></li>
+        <li><a href="recommendations.html">Recommendations</a></li>
+        <li><a href="bookings.html">My Bookings</a></li>
+        <li><a href="profile.html">Profile</a></li>
+      </ul>
+      <div class="nav-auth" id="nav-auth"><!-- populated by js/auth.js --></div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <h1>Movies</h1>
+      <p>Explore the full catalogue — search, filter and sort to find your next favourite.</p>
+    </section>
+
+    <section class="filters" aria-label="Movie filters">
+      <form id="filters-form" class="filters-form">
+        <div class="filter-field filter-search">
+          <label for="search-input">Search</label>
+          <input type="search" id="search-input" placeholder="Title, genre, actor, director…" autocomplete="off" />
+        </div>
+        <div class="filter-field">
+          <label for="filter-genre">Genre</label>
+          <select id="filter-genre"><option value="">All genres</option></select>
+        </div>
+        <div class="filter-field">
+          <label for="filter-language">Language</label>
+          <select id="filter-language"><option value="">All languages</option></select>
+        </div>
+        <div class="filter-field">
+          <label for="filter-rating">Rating</label>
+          <select id="filter-rating">
+            <option value="">Any rating</option>
+            <option value="6">6 and up</option>
+            <option value="7">7 and up</option>
+            <option value="8">8 and up</option>
+            <option value="9">9 and up</option>
+          </select>
+        </div>
+        <div class="filter-field">
+          <label for="filter-year">Year</label>
+          <select id="filter-year"><option value="">All years</option></select>
+        </div>
+        <div class="filter-field">
+          <label for="sort-select">Sort by</label>
+          <select id="sort-select">
+            <option value="popularity">Most popular</option>
+            <option value="rating">Highest rated</option>
+            <option value="newest">Newest</option>
+            <option value="alphabetical">A–Z</option>
+          </select>
+        </div>
+        <button type="button" id="clear-filters" class="btn btn-ghost">Clear</button>
+      </form>
+    </section>
+
+    <section class="movie-results" aria-label="Movie results">
+      <p class="result-count" id="result-count" role="status" aria-live="polite"></p>
+      <div class="movie-grid" id="movie-grid"></div>
+      <div class="empty-state" id="empty-state" hidden>
+        <h2>No movies found</h2>
+        <p>Try a different search term or clear the filters.</p>
+      </div>
+      <div class="load-more-wrap">
+        <button class="btn btn-outline" id="load-more" type="button" hidden>Load more</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-brand">CineBook<span>AI</span></p>
+      <p class="footer-tag">Book smarter. Watch better.</p>
+      <p class="footer-note">Demo project — no real payments are processed.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="js/app.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/movies.js"></script>
+</body>
+</html>

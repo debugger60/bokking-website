@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account — CineBook AI</title>
+  <meta name="description" content="Create your CineBook AI account to book movie tickets." />
+  <meta name="theme-color" content="#0a0a10" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%F0%9F%8E%AC%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/movie.css" />
+  <link rel="stylesheet" href="css/booking.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body data-page="register">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="navbar" id="navbar" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="CineBook AI — home">
+        <span class="brand-mark" aria-hidden="true">🎬</span>
+        <span class="brand-name">CineBook<span class="brand-ai">AI</span></span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="movies.html">Movies</a></li>
+        <li><a href="theatres.html">Theatres</a></li>
+        <li><a href="recommendations.html">Recommendations</a></li>
+        <li><a href="bookings.html">My Bookings</a></li>
+        <li><a href="profile.html">Profile</a></li>
+      </ul>
+      <div class="nav-auth" id="nav-auth"><!-- populated by js/auth.js --></div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="auth-page">
+      <div class="auth-card">
+        <h1>Create your account</h1>
+        <p class="auth-sub">Join CineBook AI for a smarter way to book movie tickets.</p>
+
+        <form id="register-form" novalidate>
+          <div class="form-group">
+            <label for="register-name">Name</label>
+            <input type="text" id="register-name" name="name" autocomplete="name" required minlength="2" maxlength="80" placeholder="Your full name" />
+          </div>
+          <div class="form-group">
+            <label for="register-email">Email</label>
+            <input type="email" id="register-email" name="email" autocomplete="email" required placeholder="you@example.com" />
+          </div>
+          <div class="form-group">
+            <label for="register-password">Password</label>
+            <input type="password" id="register-password" name="password" autocomplete="new-password" required minlength="6" maxlength="72" placeholder="At least 6 characters" />
+          </div>
+          <div class="form-group">
+            <label for="register-confirm">Confirm password</label>
+            <input type="password" id="register-confirm" name="confirm" autocomplete="new-password" required placeholder="Repeat your password" />
+          </div>
+          <p class="form-error" id="register-error" role="alert" hidden></p>
+          <button class="btn btn-primary btn-block" id="register-btn" type="submit">Create account</button>
+        </form>
+
+        <p class="auth-alt">Already have an account? <a href="login.html">Log in</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-brand">CineBook<span>AI</span></p>
+      <p class="footer-tag">Book smarter. Watch better.</p>
+      <p class="footer-note">Demo project — no real payments are processed.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="js/app.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

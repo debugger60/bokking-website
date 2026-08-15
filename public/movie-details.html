@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Details — CineBook AI</title>
+  <meta name="description" content="Movie details, showtimes, theatres, reviews and similar movies." />
+  <meta name="theme-color" content="#0a0a10" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%F0%9F%8E%AC%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/movie.css" />
+  <link rel="stylesheet" href="css/booking.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body data-page="movie-details">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="navbar" id="navbar" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="CineBook AI — home">
+        <span class="brand-mark" aria-hidden="true">🎬</span>
+        <span class="brand-name">CineBook<span class="brand-ai">AI</span></span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="movies.html" class="active" aria-current="page">Movies</a></li>
+        <li><a href="theatres.html">Theatres</a></li>
+        <li><a href="recommendations.html">Recommendations</a></li>
+        <li><a href="bookings.html">My Bookings</a></li>
+        <li><a href="profile.html">Profile</a></li>
+      </ul>
+      <div class="nav-auth" id="nav-auth"><!-- populated by js/auth.js --></div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="movie-detail-hero" id="movie-detail-hero" aria-label="Movie overview">
+      <div class="detail-backdrop" id="detail-backdrop"></div>
+      <div class="detail-overlay" aria-hidden="true"></div>
+      <div class="detail-inner">
+        <div class="detail-poster-wrap">
+          <img class="detail-poster" id="detail-poster" src="assets/images/placeholder-poster.svg" alt="" />
+        </div>
+        <div class="detail-info">
+          <h1 class="detail-title" id="detail-title">Loading movie…</h1>
+          <div class="detail-meta" id="detail-meta"></div>
+          <div class="detail-rating" id="detail-rating"></div>
+          <p class="detail-description" id="detail-description"></p>
+          <p class="detail-line"><span>Director</span><strong id="detail-director">—</strong></p>
+          <p class="detail-line"><span>Cast</span><strong id="detail-cast">—</strong></p>
+          <div class="detail-actions">
+            <a class="btn btn-outline" id="trailer-btn" href="#" target="_blank" rel="noopener">▶ Watch Trailer</a>
+            <a class="btn btn-primary" id="detail-book-btn" href="#booking-panel">Book Tickets</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking panel -->
+    <section class="booking-panel" id="booking-panel" aria-label="Book tickets">
+      <h2 class="panel-title">🎟️ Book Tickets</h2>
+      <div class="show-picker">
+        <div class="picker-group">
+          <h3 id="date-heading">1. Select a date</h3>
+          <div class="date-list" id="date-list" role="group" aria-labelledby="date-heading"></div>
+        </div>
+        <div class="picker-group">
+          <h3 id="theatre-heading">2. Select a theatre</h3>
+          <select id="theatre-select" aria-labelledby="theatre-heading">
+            <option value="">Choose a theatre…</option>
+          </select>
+        </div>
+        <div class="picker-group">
+          <h3 id="showtime-heading">3. Select a showtime</h3>
+          <div class="showtime-list" id="showtime-list" role="group" aria-labelledby="showtime-heading"></div>
+          <p class="picker-note" id="showtime-note"></p>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-lg" id="book-btn" type="button" disabled>Book Tickets</button>
+      <p class="picker-note" id="book-btn-note">Pick a date, theatre and showtime to continue.</p>
+    </section>
+
+    <!-- Similar movies -->
+    <section class="section" aria-labelledby="similar-title">
+      <div class="section-header">
+        <h2 class="section-title" id="similar-title">More like this</h2>
+      </div>
+      <div class="movie-grid" id="similar-grid"></div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="reviews-section" id="reviews-section" aria-label="Reviews">
+      <h2 class="section-title">Reviews &amp; Ratings</h2>
+      <div class="reviews-summary">
+        <p class="reviews-avg" id="reviews-avg">—</p>
+        <p class="reviews-count" id="reviews-count"></p>
+      </div>
+
+      <div class="review-form-card">
+        <h3>Write a review</h3>
+        <p class="muted" id="review-login-note">Loading…</p>
+        <form id="review-form" novalidate hidden>
+          <div class="form-group">
+            <label for="review-rating">Your rating (1–5)</label>
+            <select id="review-rating">
+              <option value="5">★★★★★ — 5</option>
+              <option value="4">★★★★ — 4</option>
+              <option value="3">★★★ — 3</option>
+              <option value="2">★★ — 2</option>
+              <option value="1">★ — 1</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="review-text">Your review</label>
+            <textarea id="review-text" rows="3" maxlength="2000" placeholder="What did you think of this movie?"></textarea>
+          </div>
+          <p class="form-error" id="review-error" role="alert" hidden></p>
+          <button class="btn btn-primary" id="review-submit" type="submit">Submit review</button>
+        </form>
+      </div>
+
+      <div class="reviews-list" id="reviews-list"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-brand">CineBook<span>AI</span></p>
+      <p class="footer-tag">Book smarter. Watch better.</p>
+      <p class="footer-note">Demo project — no real payments are processed.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="js/app.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/movie-details.js"></script>
+</body>
+</html>

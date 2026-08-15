@@ -1,0 +1,817 @@
+/* ==========================================================================
+   CineBook AI — movie.css
+   Home hero, search bar, movie cards/grid, filters, movie detail hero,
+   booking panel (date/theatre/showtime picker), reviews, theatres,
+   recommendations.
+   ========================================================================== */
+
+/* ------------------------------------------------------------------ *
+ *  Home hero
+ * ------------------------------------------------------------------ */
+.hero {
+  position: relative;
+  min-height: 78vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(180deg, #0d0d16, var(--bg));
+}
+
+.hero-backdrop {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  animation: heroZoom 26s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(8, 8, 15, 0.96) 0%, rgba(8, 8, 15, 0.8) 42%, rgba(8, 8, 15, 0.3) 78%, rgba(8, 8, 15, 0.55) 100%),
+    linear-gradient(0deg, var(--bg) 0%, transparent 30%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 660px;
+  padding: 48px 0;
+}
+
+.hero-eyebrow {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.hero-rating {
+  background: var(--gold);
+  color: #111;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+
+.hero-genre,
+.hero-lang {
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  backdrop-filter: blur(6px);
+}
+
+.hero-description {
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-bottom: 26px;
+  max-width: 560px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Search bar (home)
+ * ------------------------------------------------------------------ */
+.search-bar {
+  max-width: var(--maxw);
+  margin: -34px auto 0;
+  padding: 0 20px;
+  position: relative;
+  z-index: 3;
+}
+
+.search-bar form {
+  display: flex;
+  gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  padding: 12px;
+  box-shadow: var(--shadow);
+}
+
+.search-bar input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.search-bar input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ------------------------------------------------------------------ *
+ *  Movie grid + cards
+ * ------------------------------------------------------------------ */
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  gap: 22px;
+}
+
+.movie-card {
+  display: block;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  color: inherit;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(245, 197, 24, 0.35);
+  box-shadow: var(--shadow-lg);
+}
+
+.movie-poster {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  background: linear-gradient(160deg, #1a1a26, #101018);
+}
+
+.movie-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.movie-card:hover .movie-poster img {
+  transform: scale(1.06);
+}
+
+.poster-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--text-muted);
+  padding: 12px;
+  text-align: center;
+}
+
+.poster-fallback .emoji {
+  font-size: 2.2rem;
+}
+
+.poster-fallback span {
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.rating-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(11, 11, 16, 0.82);
+  color: var(--gold);
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 4px 9px;
+  border-radius: 8px;
+  border: 1px solid rgba(245, 197, 24, 0.4);
+  backdrop-filter: blur(6px);
+}
+
+.poster-status {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(229, 9, 20, 0.9);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 8px;
+}
+
+.match-badge {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: linear-gradient(90deg, var(--red), #c20d15);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 8px;
+}
+
+.movie-body {
+  padding: 12px 14px 14px;
+}
+
+.movie-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.movie-meta {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.movie-genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.genre-tag {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.movie-reason {
+  margin-top: 8px;
+  font-size: 0.78rem;
+  color: var(--gold-soft);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Movie filters (movies page)
+ * ------------------------------------------------------------------ */
+.filters {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 22px 20px 0;
+}
+
+.filters-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-search {
+  grid-column: span 2;
+}
+
+.filter-field label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.filters-form .btn {
+  align-self: end;
+}
+
+.movie-results {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 20px 40px;
+}
+
+.result-count {
+  padding: 20px 0 14px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.load-more-wrap {
+  text-align: center;
+  margin-top: 26px;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Movie detail hero
+ * ------------------------------------------------------------------ */
+.movie-detail-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #0d0d16, var(--bg));
+}
+
+.detail-backdrop {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.35;
+  filter: blur(2px);
+  transform: scale(1.05);
+}
+
+.detail-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 8, 15, 0.6) 0%, rgba(8, 8, 15, 0.9) 60%, var(--bg) 100%);
+}
+
+.detail-inner {
+  position: relative;
+  z-index: 2;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 56px 20px 48px;
+  display: flex;
+  gap: 40px;
+  align-items: flex-end;
+}
+
+.detail-poster-wrap {
+  flex: 0 0 250px;
+}
+
+.detail-poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-strong);
+}
+
+.detail-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.detail-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.4vw, 2.8rem);
+  margin-bottom: 12px;
+}
+
+.detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.detail-meta span {
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+
+.detail-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gold);
+  font-weight: 800;
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+}
+
+.detail-rating .star {
+  font-size: 1.2rem;
+}
+
+.detail-description {
+  color: var(--text-dim);
+  line-height: 1.65;
+  margin-bottom: 16px;
+  max-width: 720px;
+}
+
+.detail-line {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
+  font-size: 0.92rem;
+}
+
+.detail-line span {
+  color: var(--text-muted);
+  min-width: 80px;
+}
+
+.detail-line strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.detail-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Booking panel (movie details — date / theatre / showtime picker)
+ * ------------------------------------------------------------------ */
+.booking-panel {
+  max-width: var(--maxw);
+  margin: 28px auto 0;
+  padding: 0 20px;
+}
+
+.panel-title {
+  font-size: 1.5rem;
+  margin-bottom: 18px;
+}
+
+.show-picker {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.4fr;
+  gap: 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+}
+
+.picker-group h3 {
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  color: var(--text-dim);
+}
+
+.date-list,
+.showtime-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.date-chip,
+.showtime-chip {
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  border-radius: 12px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+.date-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 78px;
+}
+
+.date-chip .day {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.date-chip .date {
+  font-weight: 700;
+}
+
+.date-chip:hover,
+.showtime-chip:hover {
+  border-color: var(--gold);
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+.date-chip.active,
+.showtime-chip.active {
+  background: linear-gradient(135deg, var(--red), #a0060e);
+  border-color: var(--red);
+  color: #fff;
+}
+
+.date-chip.active .day {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.showtime-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 92px;
+}
+
+.showtime-chip .time {
+  font-weight: 700;
+}
+
+.showtime-chip .price {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.showtime-chip.active .price {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.picker-note {
+  margin-top: 12px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+#book-btn {
+  margin-top: 20px;
+  min-width: 220px;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Reviews
+ * ------------------------------------------------------------------ */
+.reviews-section {
+  max-width: var(--maxw);
+  margin: 40px auto 0;
+  padding: 0 20px;
+}
+
+.reviews-summary {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 14px 0 22px;
+}
+
+.reviews-avg {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--gold);
+  font-family: var(--font-display);
+}
+
+.reviews-count {
+  color: var(--text-muted);
+}
+
+.review-form-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.review-form-card h3 {
+  margin-bottom: 4px;
+}
+
+.reviews-list {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+.review-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+}
+
+.review-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.review-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--red), #7a050a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.review-name {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.review-date {
+  margin-left: auto;
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.stars {
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+
+.stars .star-empty {
+  color: rgba(255, 255, 255, 0.18);
+}
+
+.review-text {
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin: 6px 0 0;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Theatres
+ * ------------------------------------------------------------------ */
+.theatres-toolbar {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 22px 20px 0;
+}
+
+.theatres-toolbar .filter-field {
+  max-width: 260px;
+}
+
+.theatres-list {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 22px 20px 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 20px;
+}
+
+.theatre-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.theatre-card:hover {
+  border-color: rgba(245, 197, 24, 0.3);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.theatre-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.theatre-name {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.theatre-city {
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  color: var(--gold-soft);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.theatre-address {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+}
+
+.theatre-meta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.meta-item {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+.meta-item strong {
+  color: var(--text);
+}
+
+.theatre-shows h4 {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.show-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-top: 1px solid var(--border);
+  font-size: 0.88rem;
+}
+
+.show-movie {
+  color: var(--text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.time-tag {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Recommendations page
+ * ------------------------------------------------------------------ */
+.rec-section {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 34px 20px 0;
+}
+
+.rec-section .section-title {
+  font-size: 1.5rem;
+}

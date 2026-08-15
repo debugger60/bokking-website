@@ -1,0 +1,239 @@
+/* ==========================================================================
+   CineBook AI — responsive.css
+   Tablet and mobile layouts for every page.
+   ========================================================================== */
+
+/* ------------------------------------------------------------------ *
+ *  ≤ 1024px — tablet
+ * ------------------------------------------------------------------ */
+@media (max-width: 1024px) {
+  .show-picker {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .booking-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-summary {
+    position: static;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+
+  .booking-summary .summary-poster {
+    width: 120px;
+    flex: 0 0 120px;
+    margin-bottom: 0;
+  }
+
+  .detail-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .detail-poster-wrap {
+    flex: 0 0 auto;
+    width: 220px;
+  }
+
+  .detail-actions {
+    justify-content: center;
+  }
+
+  .detail-line {
+    justify-content: center;
+  }
+
+  .profile-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-card,
+  .preferences-card {
+    grid-column: auto;
+  }
+
+  .theatres-list {
+    grid-template-columns: 1fr;
+  }
+
+  .filters-form .filter-search {
+    grid-column: span 1;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ *  ≤ 640px — phone
+ * ------------------------------------------------------------------ */
+@media (max-width: 640px) {
+  .hero {
+    min-height: 66vh;
+  }
+
+  .hero-content {
+    padding: 36px 0;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .search-bar {
+    margin-top: -26px;
+  }
+
+  .search-bar form {
+    flex-direction: column;
+  }
+
+  .movie-grid {
+    grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+    gap: 14px;
+  }
+
+  .section {
+    padding: 30px 16px 0;
+  }
+
+  .section-alt {
+    padding: 24px 16px;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .section-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .section-title {
+    font-size: 1.35rem;
+  }
+
+  .page-hero {
+    padding: 40px 16px 28px;
+  }
+
+  .page-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .filters,
+  .movie-results,
+  .theatres-toolbar,
+  .theatres-list,
+  .rec-section,
+  .reviews-section,
+  .booking-panel,
+  .booking-layout,
+  .bookings-list,
+  .profile-layout,
+  .confirmation-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .filters-form {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .filters-form .filter-search {
+    grid-column: 1 / -1;
+  }
+
+  .filters-form .btn {
+    grid-column: 1 / -1;
+  }
+
+  .show-picker {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .date-chip,
+  .showtime-chip {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  #book-btn {
+    width: 100%;
+  }
+
+  .booking-summary {
+    flex-direction: column;
+  }
+
+  .booking-summary .summary-poster {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    flex: none;
+  }
+
+  .seat {
+    width: 30px;
+    height: 30px;
+  }
+
+  .seat-row {
+    gap: 5px;
+  }
+
+  .screen-indicator {
+    width: 84%;
+  }
+
+  .ticket-meta-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 14px;
+  }
+
+  .ticket-title {
+    font-size: 1.3rem;
+  }
+
+  .booking-card {
+    flex-direction: column;
+  }
+
+  .booking-card-poster {
+    width: 90px;
+    flex: 0 0 90px;
+  }
+
+  .booking-card-side {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .auth-card {
+    padding: 26px 20px;
+  }
+
+  .profile-stats {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .reviews-list {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-inner {
+    padding: 32px 16px;
+  }
+
+  .toast {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    max-width: none;
+  }
+}

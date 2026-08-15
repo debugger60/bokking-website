@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theatres — CineBook AI</title>
+  <meta name="description" content="Browse cinemas and screens across Bhubaneswar, Mumbai, Delhi, Bengaluru and more." />
+  <meta name="theme-color" content="#0a0a10" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%F0%9F%8E%AC%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/movie.css" />
+  <link rel="stylesheet" href="css/booking.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body data-page="theatres">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="navbar" id="navbar" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="CineBook AI — home">
+        <span class="brand-mark" aria-hidden="true">🎬</span>
+        <span class="brand-name">CineBook<span class="brand-ai">AI</span></span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="movies.html">Movies</a></li>
+        <li><a href="theatres.html" class="active" aria-current="page">Theatres</a></li>
+        <li><a href="recommendations.html">Recommendations</a></li>
+        <li><a href="bookings.html">My Bookings</a></li>
+        <li><a href="profile.html">Profile</a></li>
+      </ul>
+      <div class="nav-auth" id="nav-auth"><!-- populated by js/auth.js --></div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <h1>Theatres</h1>
+      <p>Find your nearest cinema and see what's playing today.</p>
+    </section>
+
+    <section class="theatres-toolbar" aria-label="Theatre filters">
+      <div class="filter-field">
+        <label for="city-filter">City</label>
+        <select id="city-filter"><option value="">All cities</option></select>
+      </div>
+    </section>
+
+    <section class="theatres-list" id="theatre-list" aria-live="polite"></section>
+    <div class="empty-state" id="theatres-empty" hidden>
+      <h2>No theatres found</h2>
+      <p>Try selecting a different city.</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-brand">CineBook<span>AI</span></p>
+      <p class="footer-tag">Book smarter. Watch better.</p>
+      <p class="footer-note">Demo project — no real payments are processed.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="js/app.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/theatres.js"></script>
+</body>
+</html>
